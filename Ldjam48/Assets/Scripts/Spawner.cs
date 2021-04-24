@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
 	public void Spawn(Fighter fighter)
 	{
 		Fighter newFighter = Instantiate(fighter, transform.position, transform.rotation);
+		World.Instance.AddAttackable(fighter);
 		newFighter.StartAt(_startPosition.position);
 	}
 
@@ -22,6 +23,6 @@ public class Spawner : MonoBehaviour
 			return;
 
 		Spawn(_fighterPrefab);
-		nextSpawn = Time.time + 2.0f;
+		nextSpawn = Time.time + 20.0f;
 	}
 }

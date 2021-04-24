@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2197763462758975744}
   - component: {fileID: 7913619311174383839}
+  - component: {fileID: 8809919614043773773}
   m_Layer: 0
   m_Name: FighterEvil
   m_TagString: Untagged
@@ -44,11 +45,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feb092bdbf8b7a489926ad0d88fca5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 10
+  _side: 1
   _tPath: 0
   _tPathStart: 1
   _direction: 0
-  _speed: 4
+  _speed: 15
   _rotationSpeed: 100
+--- !u!114 &8809919614043773773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574505895422835418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afe03f360b4c6f4dac0e9f946a65c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _side: 1
+  _range: 1
+  _attackDamage: 1
+  _reloadingTime: 1
+  _attackTime: 0.5
 --- !u!1 &4906421583189344548
 GameObject:
   m_ObjectHideFlags: 0

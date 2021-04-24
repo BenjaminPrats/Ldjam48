@@ -2,61 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Attack))]
 public class Fighter : MovableObject
 {
 	public enum State
 	{
 		None,
-		Move,
-		Attack,
+		Active,
 	}
 
 	[Header("Fighter Properties")]
-	[SerializeField] private float _maxHealth;
-	[SerializeField] private float _attackRadius;
-
 
 	State _state = State.None;
-	float _currentHealth;
-	Transform _target;
+	Attack _attacker;
 
 
 	public void StartAt(Vector3 startingPoint)
 	{
+		_isActive = false;
 		StartCoroutine(MoveToStartingPoint(startingPoint));
 	}
 
 	protected override void Start()
 	{
 		base.Start();
-		_currentHealth = _maxHealth;
 		_state = State.None;
+		_attacker = GetComponent<Attack>();
 	}
 
 	private void Update()
 	{
+		if (!IsAlive)
+			return;
+
 		if (_state == State.None)
 			return;
 
-		if (_target == null)
-		{
-			// Check if there is any near enemy
-			
+		if (_attacker.HandleAction())
+			return; // attacker consumed the action
 
-			Move();
-			return;
-		}
-
-
-
-		if (_state == State.Attack)
-		{
-			// Attack
-		}
-		else if (_state == State.Move)
-		{
-			Move();
-		}
+		Move();
 	}
 
 
@@ -69,12 +54,7 @@ public class Fighter : MovableObject
 			yield return null;
 		}
 
-		_state = State.Move;
-	}
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, _attackRadius);
+		_isActive = true;
+		_state = State.Active;
 	}
 }

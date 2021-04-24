@@ -19,25 +19,46 @@ public class StairsGenerator : MonoBehaviour
 
 	private Transform[] _steps;
 
+
 	public void GenerateStairs()
 	{
 		Init();
 		DeleteStairs();
-		const float twoPI = Mathf.PI * 2.0f;
-		float endAngle = twoPI * (float)_cycleCount;
-		float angleStep = twoPI / (float)_stepCountPerCycle;
-		float heightStep = _height / (twoPI * (float)_cycleCount);
 
-		int stepCount = (int)((float)_cycleCount * (float)_stepCountPerCycle * angleStep);
+		int stepCount = _cycleCount * _stepCountPerCycle;
+		float step = 1.0f / ((float)(stepCount - 1));
 		_steps = new Transform[stepCount];
 
 		for (int i = 0; i < stepCount; i++)
 		{
-			float currentAngle = angleStep * i;
 			_steps[i] = Instantiate(_stepTransform, transform);
-			_steps[i].localPosition = new Vector3(_radius * Mathf.Cos(currentAngle), -heightStep * currentAngle, _radius * Mathf.Sin(currentAngle));
-		}
 
+			float tHelix = step * (float)i;
+			_steps[i].localPosition = _helix.GetPosition(tHelix);
+
+			float angle = Mathf.Rad2Deg * _helix.GetAngleRad(tHelix);
+			_steps[i].localRotation = Quaternion.Euler(0.0f, -angle, 0.0f);
+		}
+	}
+
+	public Vector3 GetStartPosition()
+	{
+		if (_steps == null || _steps.Length < 1)
+		{
+			Debug.LogError("No valid Stairs");
+			return Vector3.zero;
+		}
+		return _steps[0].position;
+	}
+
+	public Vector3 GetEndPosition()
+	{
+		if (_steps == null || _steps.Length < 1)
+		{
+			Debug.LogError("No valid Stairs");
+			return Vector3.zero;
+		}
+		return _steps[_steps.Length - 1].position;
 	}
 
 	private void Update()

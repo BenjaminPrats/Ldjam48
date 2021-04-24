@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Tower : Singleton<Tower>
 {
+
+	public enum Direction
+	{
+		Up,
+		Down
+	}
+
 	[SerializeField] private Helix _helix;
 	[SerializeField] private Transform _start;
 	[SerializeField] private Transform _end;
@@ -40,7 +47,7 @@ public class Tower : Singleton<Tower>
 
 		// End
 		tPath = (t - _ratioEndStairs) / (1.0f - _ratioEndStairs);
-		return Vector3.Lerp(_start.position, GetStairsPosition(0.0f), tPath);
+		return Vector3.Lerp(GetStairsPosition(1.0f), _end.position, tPath);
 	}
 
 	protected override void Awake()

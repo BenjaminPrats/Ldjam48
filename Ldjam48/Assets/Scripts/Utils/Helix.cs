@@ -12,13 +12,14 @@ public class Helix : ScriptableObject
 	public const float twoPI = Mathf.PI * 2.0f;
 
 	// t has to be between 0 and 1
-	public Vector3 GetPosition(float t)
+	public Vector3 GetPosition(float t, float offset = 0.0f)
 	{
 		float heightStep = height / (twoPI * (float)cycleCount);
 
 		float currentAngle = GetAngleRad(t);
+		float currentRadius = radius + offset;
 
-		return new Vector3(radius * Mathf.Cos(currentAngle), -heightStep * currentAngle, radius * Mathf.Sin(currentAngle));
+		return new Vector3(currentRadius * Mathf.Cos(currentAngle), -heightStep * currentAngle, currentRadius * Mathf.Sin(currentAngle));
 	}
 
 	public float GetAngleRad(float t)

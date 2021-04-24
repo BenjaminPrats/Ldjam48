@@ -9,32 +9,39 @@ public class MovableObject : MonoBehaviour
 	[SerializeField] private float _tPathStart = 0.0f;
 
 	[Header("Parameters")]
-	[SerializeField] private float _speed = 1.0f;
+	[SerializeField] protected Tower.Direction _direction;
+	[SerializeField] protected float _speed = 1.0f;
+	[SerializeField] protected float _rotationSpeed = 100.0f;
 
+	Tower.Direction Direction { get => _direction; set => _direction = value; }
 
-	public void GoUp()
+	public void Move()
 	{
-		Move(-1.0f);
-	}
+		float direction = _direction == Tower.Direction.Down ? 1.0f : -1.0f; 
 
-	public void GoDown()
-	{
-		Move(1.0f);
-	}
-
-	private void Move(float direction) // direction should be 1 or -1
-	{
+		// Position
 		float pathLength = Tower.Instance.GetPathLength();
 		_tPath += (direction * _speed * Time.deltaTime / pathLength);
+
+		// Rotation
 		transform.position = Tower.Instance.GetPosition(_tPath);
+		if (_tPath > 0.999f || _tPath < 0.001f) // keep the previous rotation
+			return;
+
+		float tStep = _tPath + 0.05f;
+		Vector3 targetPosition = Tower.Instance.GetPosition(_tPath + 0.05f);
+		RotateTowards(targetPosition);
 	}
-	private void Start()
+
+	protected virtual void Start()
 	{
 		_tPath = _tPathStart;
 	}
 
-	private void Update()
+	private void RotateTowards(Vector3 targetPosition)
 	{
-		GoDown();
+		Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 	}
+
 }

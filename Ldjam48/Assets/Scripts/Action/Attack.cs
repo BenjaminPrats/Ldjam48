@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
 	Attackable _target;
 	float _actionTimer;
 
+	public Attackable.Side Side => _side; 
 	public bool IsReloading => _state == State.Reloading;
 	public bool IsAttacking => _state == State.Attacking;
 	public bool IsReady     => _state == State.Ready;

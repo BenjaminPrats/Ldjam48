@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Attack))]
 public class Fighter : MovableObject
 {
 	public enum State
@@ -11,28 +10,32 @@ public class Fighter : MovableObject
 		Active,
 	}
 
+	[SerializeField] private Attackable _attackable;
+	[SerializeField] private Attack _attacker;
 	[Header("Fighter Properties")]
 
 	State _state = State.None;
-	Attack _attacker;
 
 
 	public void StartAt(Vector3 startingPoint)
 	{
-		_isActive = false;
 		StartCoroutine(MoveToStartingPoint(startingPoint));
+		
 	}
 
 	protected override void Start()
 	{
 		base.Start();
 		_state = State.None;
-		_attacker = GetComponent<Attack>();
+
+		if (_attackable == null || _attacker == null || _attackable.GetSide() != _attacker.Side)
+			Debug.LogError("Invalid attackable / attacker");
+		_attackable.enabled = false;
 	}
 
 	private void Update()
 	{
-		if (!IsAlive)
+		if (!_attackable.IsAlive)
 			return;
 
 		if (_state == State.None)
@@ -54,7 +57,8 @@ public class Fighter : MovableObject
 			yield return null;
 		}
 
-		_isActive = true;
+		_attackable.enabled = true;
+		World.Instance.AddAttackable(_attackable);
 		_state = State.Active;
 	}
 }

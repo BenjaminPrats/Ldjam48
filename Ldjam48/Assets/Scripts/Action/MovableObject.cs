@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObject : Attackable
+public class MovableObject : MonoBehaviour // Attackable
 {
 	[Range(0, 1)]
 	[SerializeField] private float _tPath = 0.0f;

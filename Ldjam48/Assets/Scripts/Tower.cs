@@ -25,6 +25,8 @@ public class Tower : Singleton<Tower>
 
 
 	public float GetPathLength() { return _pathLength; }
+	public bool IsAtTop(float t) { return t < _ratioStartStairs; }
+	public bool IsAtBottom(float t) { return t > _ratioEndStairs; }
 
 	public Vector3 GetPosition(float t)
 	{

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MovableObject
 {
 	[SerializeField] private Attackable _attackable;
+	[SerializeField] private BannerManager _bannerManager;
 
 	protected override void Start()
 	{
@@ -19,6 +20,21 @@ public class PlayerController : MovableObject
 			GameOver();
 			return;
 		}
+
+		if (_bannerManager.enabled)
+		{
+			return;
+		}
+		else if (IsAtTop)
+		{
+			if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
+			{
+				_bannerManager.enabled = true;
+				return;
+			}
+		}
+
+
 		float verticalInput = Input.GetAxis("Vertical");
 
 		_direction = verticalInput < 0.0f ? Tower.Direction.Down : Tower.Direction.Up;

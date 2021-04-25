@@ -16,6 +16,8 @@ public class MovableObject : MonoBehaviour // Attackable
 	[SerializeField] protected float _rotationSpeed = 100.0f;
 
 	Tower.Direction Direction { get => _direction; set => _direction = value; }
+	public bool IsAtTop => Tower.Instance.IsAtTop(_tPath);
+	public bool IsAtBottom => Tower.Instance.IsAtBottom(_tPath);
 
 	public void Move(float inputFactor = 1.0f)
 	{

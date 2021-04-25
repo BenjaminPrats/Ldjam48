@@ -8,20 +8,22 @@ public class Spawner : MonoBehaviour
 	[SerializeField] private Transform _startPosition;
 	[SerializeField] private float _startT;
 
-	private float nextSpawn = 0.0f; 
+	public bool isRandom = true;
 
-	public void Spawn(Fighter fighter)
-	{
-		Fighter newFighter = Instantiate(fighter, transform.position, transform.rotation);
-		newFighter.StartAt(_startPosition.position);
-	}
+	public Fighter[] fighters;
+	
+	int _previousId = 0;
 
-	private void Update()
+	public void Spawn()
 	{
-		if (Time.time < nextSpawn)
+		if (fighters.Length < 1)
 			return;
 
-		Spawn(_fighterPrefab);
-		nextSpawn = Time.time + 10.0f;
+		int i = isRandom ? Random.Range(0, fighters.Length) : (_previousId + 1) % fighters.Length;
+		_previousId = i;
+		Fighter fighter = fighters[i];
+		
+		Fighter newFighter = Instantiate(fighter, transform.position, transform.rotation);
+		newFighter.StartAt(_startPosition.position);
 	}
 }

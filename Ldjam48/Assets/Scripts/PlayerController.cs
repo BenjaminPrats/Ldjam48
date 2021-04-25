@@ -30,6 +30,7 @@ public class PlayerController : MovableObject
 			if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
 			{
 				_bannerManager.enabled = true;
+				_bannerManager.InitBanner();
 				return;
 			}
 		}

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MilitaryOption : Option
 {
-	[SerializeField] Barracks.Mode _mode;
+	[SerializeField] BarracksGood.Mode _mode;
 
 	protected override void Select()
 	{
 		base.Select();
-		Barracks.Instance.SetMode(_mode);
+		World.Instance.BarracksGood.SetMode(_mode);
 	}
 }

@@ -11,9 +11,10 @@ public class World : Singleton<World>
 	[SerializeField] float _waitTimeForCoin = 2.0f;
 	[SerializeField] int _coinPerTick = 1;
 
-	[Header("Spawn Param")]
-	public float barracksSpawnTime = 10.0f;
-	float enemySpawnTime = 10.0f;
+	[Space]
+	[SerializeField] BarracksGood _barracksGood;
+
+	public BarracksGood BarracksGood { get => _barracksGood; }
 
 	float _coinTimer;
 	int Coins

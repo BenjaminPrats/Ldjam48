@@ -52,7 +52,7 @@ public class Attackable : MonoBehaviour
 
 	public virtual void OnDeath()
 	{
-		World.Instance.RemoveAttackable(this);
+		HelperAttackable.RemoveAttackable(this);
 		Debug.Log("Die!");
 	}
 }

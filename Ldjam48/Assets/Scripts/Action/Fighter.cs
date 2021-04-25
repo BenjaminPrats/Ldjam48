@@ -58,7 +58,7 @@ public class Fighter : MovableObject
 		}
 
 		_attackable.enabled = true;
-		World.Instance.AddAttackable(_attackable);
+		HelperAttackable.AddAttackable(_attackable);
 		_state = State.Active;
 	}
 }

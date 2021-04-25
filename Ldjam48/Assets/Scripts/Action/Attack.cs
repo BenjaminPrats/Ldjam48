@@ -89,7 +89,7 @@ public class Attack : MonoBehaviour
 		// Try to find a target if it doesn't have one
 		if (_target == null)
 		{
-			Attackable nearestEnemy = World.Instance.FindNearestEnemy(_side, transform.position);
+			Attackable nearestEnemy = HelperAttackable.FindNearestEnemy(_side, transform.position);
 			if (nearestEnemy != null && IsValidTarget(nearestEnemy))
 			{
 				Debug.Log("Found target!");

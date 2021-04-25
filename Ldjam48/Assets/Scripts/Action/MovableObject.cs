@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovableObject : MonoBehaviour // Attackable
 {
+	static readonly float yOffset;
+
 	[Range(0, 1)]
 	[SerializeField] private float _tPath = 0.0f;
 	[SerializeField] private float _tPathStart = 0.0f;
@@ -25,7 +27,7 @@ public class MovableObject : MonoBehaviour // Attackable
 		_tPath = Mathf.Clamp(_tPath, 0.0f, 1.0f);
 
 		// Rotation
-		transform.position = Tower.Instance.GetPosition(_tPath);
+		transform.position = Tower.Instance.GetPosition(_tPath) + Vector3.up * World.Instance.moverYOffset;
 		if (_tPath > 0.999f || _tPath < 0.001f) // keep the previous rotation
 			return;
 

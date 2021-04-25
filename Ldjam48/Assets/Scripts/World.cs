@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class World : Singleton<World>
 {
-	List<Attackable> _goodAttackable = new List<Attackable>();
-	List<Attackable> _evilAttackable = new List<Attackable>();
+	public float moverYOffset;
+	[Header("Coins Param")]
+	[SerializeField] int _coins;
+	[SerializeField] float _waitTimeForCoin = 2.0f;
+	[SerializeField] int _coinPerTick = 1;
 
-	bool _isDirty = true;
+	float _coinTimer;
 
 	protected override void Awake()
 	{
@@ -16,88 +19,27 @@ public class World : Singleton<World>
 
 	private void Start()
 	{
-		UpdateList();
+		HelperAttackable.UpdateList();
+		_coinTimer = _waitTimeForCoin;
 	}
 
-	public void UpdateList()
+	private void Update()
 	{
-		if (!_isDirty)
-			return;
-
-		_goodAttackable = new List<Attackable>();
-		_evilAttackable = new List<Attackable>();
-		Attackable[] attackables = FindObjectsOfType<Attackable>();
-		for (int i = 0; i < attackables.Length; i++)
-		{
-			if (attackables[i].IsGood)
-			{
-				_goodAttackable.Add(attackables[i]);
-			}
-			else if (attackables[i].IsEvil)
-			{
-				_evilAttackable.Add(attackables[i]);
-			}
-		}
-		_isDirty = false;
-	}
-
-	public void AddAttackable(Attackable attackable)
-	{
-		// List<Attackable> list = GetOurList(attackable);
-		// list.Add(attackable);
-	}
-
-	public void RemoveAttackable(Attackable attackable)
-	{
-		// List<Attackable> list = GetOurList(attackable);
-		// list.Remove(attackable);
-	}
-
-	public Attackable FindNearestEnemy(Attackable attackable)
-	{
-		return FindNearestEnemy(attackable.GetSide(), attackable.transform.position);
-	}
-
-	public Attackable FindNearestEnemy(Attackable.Side ourSide, Vector3 ourPosition)
-	{
-		UpdateList();
-
-		List<Attackable> enemies = ourSide == Attackable.Side.Good? _evilAttackable : _goodAttackable;
-		Attackable nearest = null;
-		float nearesDistanceSqr = float.MaxValue;
-		for (int i = 0; i < enemies.Count; i++)
-		{
-			Attackable enemy = enemies[i];
-			if (enemy == null)
-			{
-				Debug.LogWarning("Attackables lists not up to date");
-				UpdateList();
-				continue;
-			}
-
-			float distanceSqr = (ourPosition - enemy.transform.position).sqrMagnitude;
-			if (distanceSqr > nearesDistanceSqr)
-				continue;
-
-			nearesDistanceSqr = distanceSqr;
-			nearest = enemy;
-		}
-
-		return nearest;
+		CoinTick();
 	}
 
 	private void LateUpdate()
 	{
-		_isDirty = true;
+		HelperAttackable.UpdateList();
 	}
 
-	private List<Attackable> GetOurList(Attackable a)
+	private void CoinTick()
 	{
-		return a.IsGood ? _goodAttackable : _evilAttackable;
-	}
+		_coinTimer -= Time.deltaTime;
+		if (_coinTimer > 0.0f)
+			return;
 
-	private List<Attackable> GetEnemyList(Attackable a)
-	{
-		return a.IsEvil ? _goodAttackable : _evilAttackable;
+		_coinTimer = _waitTimeForCoin;
+		_coins += _coinPerTick;
 	}
 }

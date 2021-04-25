@@ -20220,7 +20220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1294560303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23003,6 +23003,8 @@ MonoBehaviour:
   _rotationSpeed: 100
   _attackable: {fileID: 2030512610}
   _bannerManager: {fileID: 1765836374}
+  _tutoText: {fileID: 1622225640}
+  _tutoPanel: {fileID: 1168127431}
 --- !u!43 &1509376581
 Mesh:
   m_ObjectHideFlags: 0
@@ -27592,6 +27594,7 @@ MonoBehaviour:
   _highlightOffset: 0.3
   _tutoText: {fileID: 1622225640}
   _barracksText: {fileID: 1600323992}
+  _barrackPanel: {fileID: 1294560302}
 --- !u!43 &1786373398
 Mesh:
   m_ObjectHideFlags: 0

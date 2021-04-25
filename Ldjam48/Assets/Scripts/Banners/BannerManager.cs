@@ -8,6 +8,7 @@ public class BannerManager : MonoBehaviour
 	[SerializeField] public float _highlightOffset;
 	[SerializeField] private Text _tutoText;
 	[SerializeField] private Text _barracksText;
+	[SerializeField] private GameObject _barrackPanel;
 	Banner[] _banners = new Banner[3];
 	int _oldIndex = 0;
 	int _currentIndex = 0;
@@ -35,6 +36,8 @@ public class BannerManager : MonoBehaviour
 
 	public void UpdateHighlightedBanner()
 	{
+		_barrackPanel.SetActive(true);
+
 		Debug.Log("Current Active Banner: " + _currentIndex);
 		_banners[_oldIndex].ResetPosition();
 		_banners[_currentIndex].transform.Translate( Vector3.forward * _highlightOffset);
@@ -86,7 +89,7 @@ public class BannerManager : MonoBehaviour
 					Debug.Log("Can't buy");
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.DownArrow))
+			else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.UpArrow))
 			{
 				_banners[_currentIndex].SelectExit();
 				ToggleFocus();
@@ -121,12 +124,11 @@ public class BannerManager : MonoBehaviour
 			}
 		}
 
-
-
 	}
 
 	private void ExitBanners()
 	{
+		_barrackPanel.SetActive(false);
 		_tutoText.text = "Press 'E' or 'Left Arrow' to interact";
 		_banners[_currentIndex].ResetPosition();
 		this.enabled = false;

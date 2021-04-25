@@ -15,21 +15,22 @@ public class MovableObject : MonoBehaviour // Attackable
 
 	Tower.Direction Direction { get => _direction; set => _direction = value; }
 
-	public void Move()
+	public void Move(float inputFactor = 1.0f)
 	{
 		float direction = _direction == Tower.Direction.Down ? 1.0f : -1.0f; 
 
 		// Position
 		float pathLength = Tower.Instance.GetPathLength();
-		_tPath += (direction * _speed * Time.deltaTime / pathLength);
+		_tPath += (direction * _speed * inputFactor * Time.deltaTime / pathLength);
+		_tPath = Mathf.Clamp(_tPath, 0.0f, 1.0f);
 
 		// Rotation
 		transform.position = Tower.Instance.GetPosition(_tPath);
 		if (_tPath > 0.999f || _tPath < 0.001f) // keep the previous rotation
 			return;
 
-		float tStep = _tPath + 0.05f;
-		Vector3 targetPosition = Tower.Instance.GetPosition(_tPath + 0.05f);
+		float tStep = _tPath + direction * 0.05f;
+		Vector3 targetPosition = Tower.Instance.GetPosition(tStep);
 		RotateTowards(targetPosition);
 	}
 

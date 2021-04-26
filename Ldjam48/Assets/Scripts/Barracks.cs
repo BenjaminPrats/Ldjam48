@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Barracks : Singleton<Barracks>
+public class Barracks : MonoBehaviour
 {
 	[SerializeField] protected bool _isRandom = true;
-	protected override void Awake()
-	{
-		base.Awake();
-	}
 
 	protected Spawner _spawner;
 	float _lastSpawnTime = 0.0f;

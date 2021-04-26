@@ -13,9 +13,10 @@ public class Attackable : MonoBehaviour
 
 	[SerializeField] protected int  _maxHealth = 10;
 	[SerializeField] protected Side _side;
-	
+
 	protected int _currentHealth;
 	protected bool _isActive = true;
+	protected HealthBar _healthBar;
 
 	public bool IsAlive { get => _currentHealth > 0 && _isActive; }
 	public bool IsGood  { get => _side == Side.Good; }
@@ -35,22 +36,30 @@ public class Attackable : MonoBehaviour
 			return false;
 
 		_currentHealth -= damage;
+		OnHit(damage);
+
 		if (!IsAlive)
 		{
 			OnDeath();
 			return true;
 		}
-
-		OnHit(damage);
 		return true;
 	}
 
 	protected virtual void OnHit(int damage)
 	{
+		if (_healthBar == null)
+		{
+			_healthBar = Instantiate(World.Instance.GetHealthBarPrefab(_side), transform);
+			_healthBar.Init(_maxHealth);
+		}
+
+		_healthBar.SetNewHealth(_currentHealth);
+
 		Debug.Log("Receive " + damage + " damage");
 	}
 
-	public virtual void OnDeath()
+	protected virtual void OnDeath()
 	{
 		HelperAttackable.RemoveAttackable(this);
 		Debug.Log("Die!");

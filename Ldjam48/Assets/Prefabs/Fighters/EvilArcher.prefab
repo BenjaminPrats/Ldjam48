@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2197763462758975744}
   - component: {fileID: 7913619311174383839}
   m_Layer: 0
-  m_Name: FighterEvil
+  m_Name: EvilArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,8 +50,8 @@ MonoBehaviour:
   _direction: 0
   _speed: 15
   _rotationSpeed: 100
-  _attackable: {fileID: 1514608392616783920}
-  _attacker: {fileID: 4536257626608715186}
+  _attackable: {fileID: 2586868497426119336}
+  _attacker: {fileID: 7365848426662954898}
 --- !u!1 &2910774882488364459
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +61,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6941319104508843931}
-  - component: {fileID: 4536257626608715186}
-  - component: {fileID: 1514608392616783920}
+  - component: {fileID: 7365848426662954898}
+  - component: {fileID: 2586868497426119336}
   m_Layer: 0
   m_Name: AttackTarget
   m_TagString: Untagged
@@ -84,7 +84,7 @@ Transform:
   m_Father: {fileID: 2197763462758975744}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4536257626608715186
+--- !u!114 &7365848426662954898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,15 +93,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2910774882488364459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2afe03f360b4c6f4dac0e9f946a65c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 57a86d771814d534c8641444c0c6ffcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _side: 1
-  _range: 1
+  _range: 6
   _attackDamage: 1
-  _reloadingTime: 1
+  _reloadingTime: 2
   _attackTime: 0.5
---- !u!114 &1514608392616783920
+  _weaponPivot: {fileID: 0}
+--- !u!114 &2586868497426119336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,11 +111,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2910774882488364459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb91d3bfbb36a7748bcfde2d8af5579a, type: 3}
+  m_Script: {fileID: 11500000, guid: d20e71a1ba81d594b83c74cac8d2ca13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 3
   _side: 1
+  _parent: {fileID: 2197763462758975744}
 --- !u!1 &4906421583189344548
 GameObject:
   m_ObjectHideFlags: 0

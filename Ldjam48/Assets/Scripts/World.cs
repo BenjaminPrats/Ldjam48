@@ -14,6 +14,14 @@ public class World : Singleton<World>
 	[Space]
 	[SerializeField] BarracksGood _barracksGood;
 
+	[Space]
+	[SerializeField] HealthBar _goodHealthBar;
+	[SerializeField] HealthBar _evilHealthBar;
+	[SerializeField] Camera _camera;
+
+	public HealthBar GetHealthBarPrefab(Attackable.Side side) { return side == Attackable.Side.Evil ? _evilHealthBar : _goodHealthBar; }
+
+	public Camera Camera => _camera;
 	public BarracksGood BarracksGood { get => _barracksGood; }
 
 	float _coinTimer;
@@ -40,6 +48,12 @@ public class World : Singleton<World>
 		return true;
 	}
 
+	public void HandleWin()
+	{
+		Debug.Log("You win!");
+	}
+
+
 	private void Start()
 	{
 		HelperAttackable.UpdateList();
@@ -65,4 +79,6 @@ public class World : Singleton<World>
 		_coinTimer = _waitTimeForCoin;
 		Coins += _coinPerTick;
 	}
+
+
 }

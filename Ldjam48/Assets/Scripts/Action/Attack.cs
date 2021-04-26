@@ -18,10 +18,11 @@ public class Attack : MonoBehaviour
 	[SerializeField] protected float _range = 1.0f;
 	[SerializeField] protected int _attackDamage = 1;
 	[SerializeField] protected float _reloadingTime = 1.0f;
-		[SerializeField] private float _attackTime = 0.5f;
+	[SerializeField] protected float _attackTime = 0.5f;
+	[SerializeField] protected Transform _weaponPivot;
 
 	State _state = State.Ready;
-	Attackable _target;
+	protected Attackable _target;
 	float _actionTimer;
 
 	public Attackable.Side Side => _side; 
@@ -47,6 +48,7 @@ public class Attack : MonoBehaviour
 			}
 			else if (IsReloading)
 			{
+				StartReloadAnim();
 				_state = State.Ready;
 			}
 
@@ -57,12 +59,23 @@ public class Attack : MonoBehaviour
 
 		if (_target != null && IsReady)
 		{
+			StartAttackAnim();
 			_state = State.Attacking;
 			_actionTimer = _attackTime;
 			return true;
 		}
 
 		return false;
+	}
+
+	protected virtual void StartAttackAnim()
+	{
+
+	}
+
+	protected virtual void StartReloadAnim()
+	{
+
 	}
 
 	protected void DoAttack()
@@ -101,12 +114,6 @@ public class Attack : MonoBehaviour
 	private bool IsValidTarget(Attackable target)
 	{
 		return target.IsAlive && (target.transform.position - transform.position).sqrMagnitude <= _range * _range;
-	}
-
-	protected IEnumerator Reload()
-	{
-		yield return new WaitForSeconds(_reloadingTime);
-		_state = State.Ready;
 	}
 
 	private void OnDrawGizmosSelected()

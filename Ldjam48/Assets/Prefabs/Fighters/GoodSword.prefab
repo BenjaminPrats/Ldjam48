@@ -172,12 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afe03f360b4c6f4dac0e9f946a65c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationSpeed: 100
   _side: 0
   _range: 1.5
   _attackDamage: 1
   _reloadingTime: 1
   _attackTime: 0.5
   _weaponPivot: {fileID: 8113804011121175261}
+  _yPivot: {fileID: 7366793718707841045}
 --- !u!114 &6316834983625775303
 MonoBehaviour:
   m_ObjectHideFlags: 0

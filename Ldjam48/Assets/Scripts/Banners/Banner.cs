@@ -30,10 +30,11 @@ public class Banner : MonoBehaviour
 		_oldIndex = _currentIndex;
 	}
 
-	public void GoNext(int sign = 1)
+	public Option GoNext(int sign = 1)
 	{
 		_currentIndex = (_currentIndex + sign) % _options.Length;
 		UpdateHighlightedOption();
+		return _options[_currentIndex];
 	}
 
 	public virtual void SelectEnter()

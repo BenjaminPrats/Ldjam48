@@ -14,12 +14,15 @@ public class Attack : MonoBehaviour
 		Reloading,
 	}
 
+	[SerializeField] protected float _rotationSpeed = 100.0f;
+
 	[SerializeField] Attackable.Side _side;
 	[SerializeField] protected float _range = 1.0f;
 	[SerializeField] protected int _attackDamage = 1;
 	[SerializeField] protected float _reloadingTime = 1.0f;
 	[SerializeField] protected float _attackTime = 0.5f;
 	[SerializeField] protected Transform _weaponPivot;
+	[SerializeField] protected Transform _yPivot;
 
 	State _state = State.Ready;
 	protected Attackable _target;
@@ -35,6 +38,12 @@ public class Attack : MonoBehaviour
 	{
 		if (IsReloading || IsAttacking)
 		{
+			// Be sure to rotate toward the target
+			if (_target != null)
+			{
+				RotateTowards(_target.transform.position);
+			}
+
 			_actionTimer -= Time.deltaTime;
 			if (_actionTimer > 0.0f)
 				return true;
@@ -80,7 +89,6 @@ public class Attack : MonoBehaviour
 
 	protected void DoAttack()
 	{
-		
 		_state = State.Reloading;
 	}
 
@@ -120,5 +128,16 @@ public class Attack : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, _range);
+	}
+
+
+	protected virtual void RotateTowards(Vector3 targetPosition)
+	{
+		Quaternion targetRotation = Quaternion.LookRotation(targetPosition - _yPivot.position);
+		Vector3 eulerTargetRotation = targetRotation.eulerAngles;
+		eulerTargetRotation.x = 0f;
+		eulerTargetRotation.z = 0f;
+		targetRotation = Quaternion.Euler(eulerTargetRotation);
+		_yPivot.rotation = Quaternion.RotateTowards(_yPivot.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 	}
 }

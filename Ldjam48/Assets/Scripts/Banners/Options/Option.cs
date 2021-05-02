@@ -18,15 +18,15 @@ public class Option : MonoBehaviour
 		transform.localPosition = _startPosition;
 	}
 
-	public bool TrySelect()
+	public virtual bool TrySelect()
 	{
-		if (World.Instance.TryBuy(data.cost))
-		{
-			Select();
-			return true;
-		}
+		Select();
+		return true;
+	}
 
-		return false;
+	public virtual int GetCost()
+	{
+		return 0;
 	}
 
 	protected virtual void Select()

@@ -43,7 +43,7 @@ public class MovableObject : MonoBehaviour // Attackable
 		_tPath = _tPathStart;
 	}
 
-	private void RotateTowards(Vector3 targetPosition)
+	public void RotateTowards(Vector3 targetPosition)
 	{
 		Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);

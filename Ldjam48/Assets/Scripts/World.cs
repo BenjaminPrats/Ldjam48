@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class World : Singleton<World>
 {
@@ -19,6 +20,9 @@ public class World : Singleton<World>
 	[SerializeField] HealthBar _evilHealthBar;
 	[SerializeField] Camera _camera;
 
+	[Space]
+	[SerializeField] Text _moneyText;
+
 	public HealthBar GetHealthBarPrefab(Attackable.Side side) { return side == Attackable.Side.Evil ? _evilHealthBar : _goodHealthBar; }
 
 	public Camera Camera => _camera;
@@ -31,6 +35,7 @@ public class World : Singleton<World>
 		set
 		{
 			_coins = value;
+			_moneyText.text = _coins.ToString();
 		}
 	}
 

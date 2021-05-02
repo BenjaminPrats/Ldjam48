@@ -65,17 +65,25 @@ public class BannerManager : MonoBehaviour
 		}
 	}
 
+	void PrintOptionData(Option option)
+	{
+		OptionData data = option.data;
+		_barracksText.text = data.title+ "\r\n" + data.description + "\r\nCost: " + option.GetCost(); 
+	}
+
 	private void Update()
 	{
 		if (_inBanner)
 		{
 			if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
 			{
-				_banners[_currentIndex].GoNext(1);
+				Option option = _banners[_currentIndex].GoNext(1);
+				PrintOptionData(option);
 			}
 			else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
 			{
-				_banners[_currentIndex].GoNext(-1);
+				Option option = _banners[_currentIndex].GoNext(-1);
+				PrintOptionData(option);
 			}
 			else if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.DownArrow))
 			{

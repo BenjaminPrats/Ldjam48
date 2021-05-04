@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Slow Turret
   description: Big turret with low attack speed but high damage.
-  cost: 20
+  cost: 2

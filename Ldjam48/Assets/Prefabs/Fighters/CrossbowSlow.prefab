@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5811413998714924789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094108412712057960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031becee772f174197a1f50676f5f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 100
+  _side: 0
+  _range: 10
+  _attackDamage: 6
+  _reloadingTime: 4.5
+  _attackTime: 0.5
+  _weaponPivot: {fileID: 3983005763775426007}
+  _yPivot: {fileID: 7794771062011519867}
+  _recoilStrength: 2
+  _recoilTime: 0.5
+--- !u!114 &8743715031553683964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094108412712057960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92ec1ac2e9ef0940974e9038780957f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8055768857694119425
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,5 +125,20 @@ PrefabInstance:
 --- !u!4 &6335370323304463118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92b205eb3034600498618a5bdf705cb3, type: 3}
+  m_PrefabInstance: {fileID: 5792043376159251685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7794771062011519867 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4345391143376175006, guid: 92b205eb3034600498618a5bdf705cb3, type: 3}
+  m_PrefabInstance: {fileID: 5792043376159251685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3983005763775426007 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1790459711229087438, guid: 92b205eb3034600498618a5bdf705cb3, type: 3}
+  m_PrefabInstance: {fileID: 5792043376159251685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4094108412712057960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1679762208822419315, guid: 92b205eb3034600498618a5bdf705cb3, type: 3}
   m_PrefabInstance: {fileID: 5792043376159251685}
   m_PrefabAsset: {fileID: 0}

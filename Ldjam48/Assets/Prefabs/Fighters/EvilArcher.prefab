@@ -120,6 +120,8 @@ MonoBehaviour:
   _attackTime: 0.5
   _weaponPivot: {fileID: 3753454670952673267}
   _yPivot: {fileID: 2197763462758975744}
+  _recoilStrength: 0.5
+  _recoilTime: 0.5
 --- !u!1 &4906421583189344548
 GameObject:
   m_ObjectHideFlags: 0

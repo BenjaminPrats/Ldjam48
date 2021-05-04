@@ -39,10 +39,10 @@ public class Attack : MonoBehaviour
 		if (IsReloading || IsAttacking)
 		{
 			// Be sure to rotate toward the target
-			if (_target != null)
-			{
-				RotateTowards(_target.transform.position);
-			}
+			// if (_target != null)
+			// {
+			// 	RotateTowards(_target.transform.position);
+			// }
 
 			_actionTimer -= Time.deltaTime;
 			if (_actionTimer > 0.0f)

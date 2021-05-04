@@ -31,6 +31,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &976614328749505853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448621255529367535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031becee772f174197a1f50676f5f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 100
+  _side: 0
+  _range: 10
+  _attackDamage: 1
+  _reloadingTime: 1
+  _attackTime: 0.5
+  _weaponPivot: {fileID: 2327443507431183952}
+  _yPivot: {fileID: 8873870077353761020}
+  _recoilStrength: 1.5
+  _recoilTime: 0.5
+--- !u!114 &6047365610970807688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448621255529367535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92ec1ac2e9ef0940974e9038780957f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5146418007063603042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +125,20 @@ PrefabInstance:
 --- !u!4 &4675025122624422025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 95eaf442434eea9428133386f8cd2dbd, type: 3}
+  m_PrefabInstance: {fileID: 5146418007063603042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8873870077353761020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4345391143376175006, guid: 95eaf442434eea9428133386f8cd2dbd, type: 3}
+  m_PrefabInstance: {fileID: 5146418007063603042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2327443507431183952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1790459711229087438, guid: 95eaf442434eea9428133386f8cd2dbd, type: 3}
+  m_PrefabInstance: {fileID: 5146418007063603042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3448621255529367535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1679762208822419315, guid: 95eaf442434eea9428133386f8cd2dbd, type: 3}
   m_PrefabInstance: {fileID: 5146418007063603042}
   m_PrefabAsset: {fileID: 0}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Fast Turret
   description: Small turret with high attack speed but low damage.
-  cost: 20
+  cost: 2

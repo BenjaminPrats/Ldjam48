@@ -18,6 +18,7 @@ public class RangeAttack : Attack
 	{
 		Sequence sequence = DOTween.Sequence();
 		sequence.Append(_weaponPivot.DOLocalMoveZ(_recoilStrength, _recoilTime).SetEase(Ease.InFlash));
+		sequence.Append(_weaponPivot.DOLocalMoveZ(0.0f, _reloadingTime - _recoilTime));
 	}
 
 	protected override void RotateTowards(Vector3 targetPosition)

@@ -28,7 +28,7 @@ public class Tower : Singleton<Tower>
 	public bool IsAtTop(float t) { return t < _ratioStartStairs; }
 	public bool IsAtBottom(float t) { return t > _ratioEndStairs; }
 
-	public Vector3 GetPosition(float t)
+	public Vector3 GetPosition(float t, float offset = 0f)
 	{
 		if (t < 0.0f)
 			return _start.position;
@@ -39,17 +39,17 @@ public class Tower : Singleton<Tower>
 		if (t < _ratioStartStairs)
 		{ // Start
 			tPath = t / _ratioStartStairs;
-			return Vector3.Lerp(_start.position, GetStairsPosition(0.0f), tPath);
+			return Vector3.Lerp(_start.position, GetStairsPosition(0.0f, offset), tPath);
 		}
 		else if (t < _ratioEndStairs)
 		{ // Stairs
 			tPath = (t - _ratioStartStairs) / (_ratioEndStairs - _ratioStartStairs);
-			return GetStairsPosition(tPath);
+			return GetStairsPosition(tPath, offset);
 		}
 
 		// End
 		tPath = (t - _ratioEndStairs) / (1.0f - _ratioEndStairs);
-		return Vector3.Lerp(GetStairsPosition(1.0f), _end.position, tPath);
+		return Vector3.Lerp(GetStairsPosition(1.0f, offset), _end.position, tPath);
 	}
 
 	protected override void Awake()
@@ -73,9 +73,9 @@ public class Tower : Singleton<Tower>
 		return (_end.position   - GetStairsPosition(1.0f)).magnitude;
 	}
 
-	private Vector3 GetStairsPosition(float t)
+	private Vector3 GetStairsPosition(float t, float offset = 0f)
 	{
-		Vector3 localPosition = _helix.GetPosition(t);
+		Vector3 localPosition = _helix.GetPosition(t, offset);
 		return transform.TransformPoint(localPosition);
 	}
 

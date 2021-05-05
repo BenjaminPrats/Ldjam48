@@ -29,7 +29,7 @@ public class World : Singleton<World>
 	public BarracksGood BarracksGood { get => _barracksGood; }
 
 	float _coinTimer;
-	int Coins
+	public int Coins
 	{
 		get => _coins;
 		set

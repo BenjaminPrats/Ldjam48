@@ -61,6 +61,10 @@ public class Attackable : MonoBehaviour
 
 	protected virtual void OnDeath()
 	{
+		if (IsEvil)
+		{
+			World.Instance.Coins += 5;
+		}
 		HelperAttackable.RemoveAttackable(this);
 		Debug.Log("Die!");
 	}

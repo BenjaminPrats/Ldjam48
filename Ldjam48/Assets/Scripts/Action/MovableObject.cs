@@ -19,6 +19,8 @@ public class MovableObject : MonoBehaviour // Attackable
 	public bool IsAtTop => Tower.Instance.IsAtTop(_tPath);
 	public bool IsAtBottom => Tower.Instance.IsAtBottom(_tPath);
 
+	private float _offset = 0f;
+
 	public void Move(float inputFactor = 1.0f)
 	{
 		float direction = _direction == Tower.Direction.Down ? 1.0f : -1.0f; 
@@ -29,17 +31,18 @@ public class MovableObject : MonoBehaviour // Attackable
 		_tPath = Mathf.Clamp(_tPath, 0.0f, 1.0f);
 
 		// Rotation
-		transform.position = Tower.Instance.GetPosition(_tPath) + Vector3.up * World.Instance.moverYOffset;
+		transform.position = Tower.Instance.GetPosition(_tPath, _offset) + Vector3.up * World.Instance.moverYOffset;
 		if (_tPath > 0.999f || _tPath < 0.001f) // keep the previous rotation
 			return;
 
 		float tStep = _tPath + direction * 0.05f;
-		Vector3 targetPosition = Tower.Instance.GetPosition(tStep);
+		Vector3 targetPosition = Tower.Instance.GetPosition(tStep, _offset);
 		RotateTowards(targetPosition);
 	}
 
 	protected virtual void Start()
 	{
+		_offset = Random.Range(-1f, 1f);
 		_tPath = _tPathStart;
 	}
 

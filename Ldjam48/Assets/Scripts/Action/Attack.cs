@@ -87,6 +87,11 @@ public class Attack : MonoBehaviour
 
 	}
 
+	protected virtual void Start()
+	{
+		_range += Random.Range(-0.25f, 0.5f);
+	}
+
 	protected void DoAttack()
 	{
 		_state = State.Reloading;

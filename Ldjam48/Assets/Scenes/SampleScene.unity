@@ -12096,11 +12096,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e7a052e369b3b4f982d0950ef16c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingSettings: {fileID: 11400000, guid: a7f0ab710c6363042af6bbdfde9a5510, type: 2}
+  settings: {fileID: 0}
   moverYOffset: 0.7
   bannerOffset: 0.3
   _coins: 0
-  _waitTimeForCoin: 2
-  _coinPerTick: 1
   _barracksGood: {fileID: 308367000}
   _goodHealthBar: {fileID: 4571882571866423535, guid: cfc3d935c3486334c84e45ba68064aa1, type: 3}
   _evilHealthBar: {fileID: 2137560802725793592, guid: 2c3e7f04d50d0844dab068305022b4ad, type: 3}

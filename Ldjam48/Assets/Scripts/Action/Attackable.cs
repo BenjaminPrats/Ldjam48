@@ -63,7 +63,7 @@ public class Attackable : MonoBehaviour
 	{
 		if (IsEvil)
 		{
-			World.Instance.Coins += 5;
+			World.Instance.Coins += World.Instance.settings.coinPerKill;
 		}
 		HelperAttackable.RemoveAttackable(this);
 		Debug.Log("Die!");

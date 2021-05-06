@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class World : Singleton<World>
 {
+	[SerializeField] SettingsData _startingSettings;
+	[HideInInspector] public SettingsData settings;
 	public float moverYOffset;
 	public float bannerOffset = 0.3f;
 	[Header("Coins Param")]
 	[SerializeField] int _coins;
-	[SerializeField] float _waitTimeForCoin = 2.0f;
-	[SerializeField] int _coinPerTick = 1;
 
 	[Space]
 	[SerializeField] BarracksGood _barracksGood;
@@ -42,6 +43,7 @@ public class World : Singleton<World>
 	protected override void Awake()
 	{
 		base.Awake();
+		settings = Instantiate(_startingSettings);
 	}
 
 	public bool TryBuy(int cost)
@@ -62,7 +64,7 @@ public class World : Singleton<World>
 	private void Start()
 	{
 		HelperAttackable.UpdateList();
-		_coinTimer = _waitTimeForCoin;
+		_coinTimer = settings.waitTimeCoinTick;
 	}
 
 	private void Update()
@@ -81,8 +83,8 @@ public class World : Singleton<World>
 		if (_coinTimer > 0.0f)
 			return;
 
-		_coinTimer = _waitTimeForCoin;
-		Coins += _coinPerTick;
+		_coinTimer = settings.waitTimeCoinTick;
+		Coins += settings.coinPerTick;
 	}
 
 

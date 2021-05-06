@@ -38,4 +38,9 @@ public class Option : MonoBehaviour
 	{
 		Debug.Log(data.title + " is now unselected.");
 	}
+
+	public virtual bool IsValid()
+	{
+		return true;
+	}
 }

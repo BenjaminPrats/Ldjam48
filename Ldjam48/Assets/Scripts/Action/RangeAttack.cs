@@ -9,6 +9,8 @@ public class RangeAttack : Attack
 	[SerializeField] private float _recoilStrength = 0.3f;
 	[SerializeField] private float _recoilTime = 0.5f;
 
+	[SerializeField] private bool _isDefense = false;
+
 	// protected override void StartAttackAnim()
 	// {
 		
@@ -31,6 +33,24 @@ public class RangeAttack : Attack
 		eulerTargetRotation.z = 0f;
 		targetRotation = Quaternion.Euler(eulerTargetRotation);
 		_weaponPivot.rotation = Quaternion.RotateTowards(_weaponPivot.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+	}
+
+	protected override int GetDamage()
+	{
+		int damage = base.GetDamage();
+		if (_isDefense)
+			damage += World.Instance.settings.defenseDamageModifier;
+		else if (Side == Attackable.Side.Good)
+			damage += World.Instance.settings.archerDamageModifier;
+		return damage;
+	}
+
+	protected override float GetRange()
+	{
+		float range = base.GetRange();
+		if (_isDefense)
+			range *= World.Instance.settings.defenseRangeFactor;
+		return range;
 	}
 
 }

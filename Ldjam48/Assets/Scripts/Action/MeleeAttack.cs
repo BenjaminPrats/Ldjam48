@@ -18,4 +18,12 @@ public class MeleeAttack : Attack
 		_weaponPivot.transform.DOLocalRotate(new Vector3(0.0f, 0, 0), _reloadingTime);
 	}
 
+	protected override int GetDamage()
+	{
+		int damage = base.GetDamage();
+		if (Side == Attackable.Side.Good)
+			damage += World.Instance.settings.swordmenDamageModifier;
+		return damage;
+	}
+
 }

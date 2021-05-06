@@ -22,6 +22,7 @@ MonoBehaviour:
   _yPivot: {fileID: 7794771062011519867}
   _recoilStrength: 2
   _recoilTime: 0.5
+  _isDefense: 1
 --- !u!114 &8743715031553683964
 MonoBehaviour:
   m_ObjectHideFlags: 0

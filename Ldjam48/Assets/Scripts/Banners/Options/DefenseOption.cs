@@ -38,6 +38,11 @@ public class DefenseOption : Option
 
 	public override int GetCost()
 	{
-		return data.cost * (1 + nextDefenseId); // The price increase after each buy
+		return (int)((float)data.cost * (1f + (float)nextDefenseId) * World.Instance.settings.optionCostFactor); // The price increase after each buy
+	}
+
+	public override bool IsValid()
+	{
+		return nextDefenseId < _defenseObjects.Length;
 	}
 }

@@ -51,7 +51,7 @@ public class Attack : MonoBehaviour
 			// Action is finished, transition to next state
 			if (IsAttacking)
 			{
-				_target.Hit(_attackDamage);
+				_target.Hit(GetDamage());
 				_actionTimer = _reloadingTime;
 				_state = State.Reloading;
 			}
@@ -75,6 +75,16 @@ public class Attack : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	protected virtual int GetDamage()
+	{
+		return _attackDamage;
+	}
+
+	protected virtual float GetRange()
+	{
+		return _range;
 	}
 
 	protected virtual void StartAttackAnim()
@@ -126,13 +136,14 @@ public class Attack : MonoBehaviour
 
 	private bool IsValidTarget(Attackable target)
 	{
-		return target.IsAlive && (target.transform.position - transform.position).sqrMagnitude <= _range * _range;
+		float range = GetRange();
+		return target.IsAlive && (target.transform.position - transform.position).sqrMagnitude <= range * range;
 	}
 
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, _range);
+		Gizmos.DrawWireSphere(transform.position, GetRange());
 	}
 
 

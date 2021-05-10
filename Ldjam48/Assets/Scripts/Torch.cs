@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class Torch : MonoBehaviour
 {
-	[SerializeField] Light _light;
+	[SerializeField] float _min = 13f;
+	[SerializeField] float _max = 17f;
 
-	private void OnTriggerStay(Collider other)
+	Light _light;
+	float _timer = 1f;
+
+	private void Start()
 	{
-		Debug.Log("Detected");
-		PlayerController player = other.gameObject.GetComponent<PlayerController>();
-		if (player)
-		{
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				Light();
-				// Call player animation
-			}
-		}
+		_light = GetComponent<Light>();
 	}
 
-	private void Light()
+	private void Update()
 	{
-		// Do the actual lighting and deactivate the script
-		_light.gameObject.SetActive(true);
-		this.enabled = false;
-	}
+		_timer -= Time.deltaTime;
+		if (_timer > 0f)
+			return;
 
+		_timer = Random.Range(0.5f, 1.2f);
+		_light.intensity = Random.Range(_min, _max);
+	}
+	
 }
